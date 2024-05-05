@@ -1,59 +1,59 @@
-import React, { Component } from "react";
-import BotCollection from './BotCollection'
-import YourBotArmy from './YourBotArmy'
+import React, { useState, useEffect } from "react";
+import BotCollection from "./BotCollection";
+import YourBotArmy from "./YourBotArmy";
 
-class BotsPage extends Component {
+const BotsPage = () => {
+  const [bots, setBots] = useState([]);
+  const [botArmy, setBotArmy] = useState([]);
 
-  constructor(){
-    super()
-    this.state = {
-      bots: [],
-      botArmy: []
+  useEffect(() => {
+    fetch("http://localhost:3000/bots")
+      .then((res) => res.json())
+      .then((botsData) => setBots(botsData));
+  }, []);
+
+  const addBotToArmy = (armyBot) => {
+    if (!botArmy.find((bot) => bot === armyBot)) {
+      const foundBot = bots.find((bot) => bot === armyBot);
+      setBotArmy((prevBotArmy) => [...prevBotArmy, foundBot]);
     }
-  }
+  };
 
-  componentDidMount(){
-    fetch(`http://localhost:3000/bots`)
-    .then(res => res.json())
-    .then(bots => this.setState({ bots }))
-  }
+  const dischargeBot = (armyBot) => {
+    const updatedBotArmy = botArmy.filter((bot) => bot !== armyBot);
+    setBotArmy(updatedBotArmy);
+  };
 
-  addBotToArmy = (armyBot) => {
-    if(!this.state.botArmy.find(bot => bot === armyBot)){
-      const foundBot = this.state.bots.find(bot => bot === armyBot)
-      this.setState((state) => ({
-        botArmy: [...state.botArmy, foundBot]
-      }))
-    } 
-  }
+  const dischargeForever = (armyBot) => {
+    if (botArmy.find((bot) => bot === armyBot)) {
+      const updatedBots = bots.filter((bot) => bot !== armyBot);
+      const updatedBotArmy = botArmy.filter((bot) => bot !== armyBot);
 
-  dischargeBot = (armyBot) => {
-    const botArmy = this.state.botArmy.filter(bot => bot !== armyBot)
-    this.setState({ botArmy })
-  }
-
-  dischargeForever = (armyBot) => {
-    // debugger
-    if(this.state.botArmy.find(bot => bot === armyBot)){
-      const bots = this.state.bots.filter(bot => bot !== armyBot)
-      const botArmy = this.state.botArmy.filter(bot => bot !== armyBot)
-
-      this.setState({ bots, botArmy })
+      setBots(updatedBots);
+      setBotArmy(updatedBotArmy);
 
       fetch(`http://localhost:3000/bots/${armyBot.id}`, {
-        method: 'DELETE'
-      })
+        method: "DELETE",
+      });
     } else {
-      console.log("not even enlisted")
+      console.log("Not even enlisted");
     }
-  }
+  };
 
-  render() {
-    return (<div>
-      <YourBotArmy bots={this.state.botArmy} dischargeBot={this.dischargeBot} dischargeForever={this.dischargeForever}/>
-      <BotCollection bots={this.state.bots} addBot={this.addBotToArmy} dischargeForever={this.dischargeForever}/>
-    </div>);
-  }
-}
+  return (
+    <div>
+      <YourBotArmy
+        bots={botArmy}
+        dischargeBot={dischargeBot}
+        dischargeForever={dischargeForever}
+      />
+      <BotCollection
+        bots={bots}
+        addBot={addBotToArmy}
+        dischargeForever={dischargeForever}
+      />
+    </div>
+  );
+};
 
 export default BotsPage;
