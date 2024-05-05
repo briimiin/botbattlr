@@ -1,13 +1,25 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+
+
+.ui-segment-inverted-olive-bot-army {
+  background-color: olive;
+
+
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+.ui.card {
+  background-color: #f4f4f4; /* Grey background color */
+  padding: 20px; /* Adjust as needed for spacing inside the card */
+  border-radius: 5px; 
+  margin-bottom: 20px;
+max-width: 250px;
+overflow: hidden;
+    /* Add rounded corners for aesthetics */
+}
+
+.ui-four-column-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* At least 5 bots per row */
+  gap: 10px;
 }
