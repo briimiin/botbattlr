@@ -5,6 +5,7 @@ import YourBotArmy from "./YourBotArmy";
 const BotsPage = () => {
   const [bots, setBots] = useState([]);
   const [botArmy, setBotArmy] = useState([]);
+  const [enlistedClasses, setEnlistedClasses] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3000/bots")
@@ -13,31 +14,40 @@ const BotsPage = () => {
   }, []);
 
   const addBotToArmy = (armyBot) => {
-    if (!botArmy.find((bot) => bot === armyBot)) {
-      const foundBot = bots.find((bot) => bot === armyBot);
-      setBotArmy((prevBotArmy) => [...prevBotArmy, foundBot]);
+    const botClass = armyBot.bot_class;
+    if (!enlistedClasses.includes(botClass)) {
+      setBotArmy((prevBotArmy) => [...prevBotArmy, armyBot]);
+      setEnlistedClasses((prevEnlistedClasses) => [
+        ...prevEnlistedClasses,
+        botClass,
+      ]);
     }
   };
 
   const dischargeBot = (armyBot) => {
     const updatedBotArmy = botArmy.filter((bot) => bot !== armyBot);
     setBotArmy(updatedBotArmy);
+    const botClass = armyBot.bot_class;
+    setEnlistedClasses((prevEnlistedClasses) =>
+      prevEnlistedClasses.filter((c) => c !== botClass)
+    );
   };
 
   const dischargeForever = (armyBot) => {
-    if (botArmy.find((bot) => bot === armyBot)) {
-      const updatedBots = bots.filter((bot) => bot !== armyBot);
-      const updatedBotArmy = botArmy.filter((bot) => bot !== armyBot);
+    const updatedBots = bots.filter((bot) => bot !== armyBot);
+    const updatedBotArmy = botArmy.filter((bot) => bot !== armyBot);
 
-      setBots(updatedBots);
-      setBotArmy(updatedBotArmy);
+    setBots(updatedBots);
+    setBotArmy(updatedBotArmy);
 
-      fetch(`http://localhost:3000/bots/${armyBot.id}`, {
-        method: "DELETE",
-      });
-    } else {
-      console.log("Not even enlisted");
-    }
+    fetch(`http://localhost:3000/bots/${armyBot.id}`, {
+      method: "DELETE",
+    });
+
+    const botClass = armyBot.bot_class;
+    setEnlistedClasses((prevEnlistedClasses) =>
+      prevEnlistedClasses.filter((c) => c !== botClass)
+    );
   };
 
   return (
