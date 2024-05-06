@@ -21,7 +21,7 @@ const BotCard = (props) => {
 
     return (
       <div className="bot-card-container">
-        <div className="ui card small-card">
+        <div className="small-card">
           <img alt="bot" src={bot.avatar_url} />
           <div className="card-content">
             <div className="bot-name">

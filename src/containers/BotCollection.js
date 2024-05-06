@@ -5,7 +5,7 @@ const BotCollection = ({ bots, addBot, dischargeForever }) => {
   return (
     <div>
       <h2>Bot Collection</h2>
-      <div className="ui-four-column-grid">
+      <div className="grid">
         <div className="row">
           {bots.map((bot) => (
             <BotCard
