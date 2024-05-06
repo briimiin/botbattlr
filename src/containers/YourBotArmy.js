@@ -2,8 +2,7 @@ import React from "react";
 import BotCard from '../components/BotCard'
 
 const YourBotArmy = (props) => {
-  console.log("Bot Army:", props.bots); // Log the bot data to inspect it
-
+  console.log("Bot Army:", props.bots); 
   return (
     <div className="bot-army">
       <div>
@@ -11,7 +10,7 @@ const YourBotArmy = (props) => {
       </div>
       {props.bots.map((bot) => (
         <BotCard
-          key={bot.id} // Assuming each bot has a unique identifier called "id"
+          key={bot.id} 
           bot={bot}
           handleBot={props.dischargeBot}
           dischargeForever={props.dischargeForever}

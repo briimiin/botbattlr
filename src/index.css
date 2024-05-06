@@ -1,4 +1,4 @@
-/* BotCard.css */
+
 .bot-card-container {
   margin: 10px;
   display: inline-block;
@@ -14,10 +14,10 @@
   height: 210px;
 }
 .small-card img {
-  max-width: 75%; /* Add this line to make the image responsive */
-  height: auto; /* Maintain aspect ratio */
-  display: block; /* Ensure the image behaves as a block element */
-  margin: 0 auto; /* Center the image horizontally */
+  max-width: 75%; 
+  height: auto;
+  display: block; 
+  margin: 0 auto; 
 }
 
 .card-content {

@@ -1,6 +1,10 @@
 import React from "react";
+import { useParams } from "react-router-dom";
+
 
 const BotSpecs = ({ bot, back, enlist }) => {
+  const { botId } = useParams();
+
   const botTypeClasses = {
     Assault: "icon military",
     Defender: "icon shield",
@@ -20,6 +24,7 @@ const BotSpecs = ({ bot, back, enlist }) => {
           <div>
             <h2>Name: {bot.name}</h2>
             <p>
+              Bot ID: {botId}
               Catchphrase: {bot.catchphrase}
               Class: {bot.bot_class}
               <i className={botTypeClasses[bot.bot_class]} />

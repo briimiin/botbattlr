@@ -71,6 +71,7 @@ const BotsPage = () => {
 
   return (
     <div>
+
       <YourBotArmy
         bots={botArmy}
         dischargeBot={dischargeBot}
