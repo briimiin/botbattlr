@@ -1,17 +1,25 @@
 import React, { useState, useEffect } from "react";
 import BotCollection from "./BotCollection";
 import YourBotArmy from "./YourBotArmy";
+import SortBar from "./SortBar";
 
 const BotsPage = () => {
   const [bots, setBots] = useState([]);
   const [botArmy, setBotArmy] = useState([]);
   const [enlistedClasses, setEnlistedClasses] = useState([]);
+  const [sortBy, setSortBy] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3000/bots")
       .then((res) => res.json())
       .then((botsData) => setBots(botsData));
   }, []);
+
+  const handleSort = (criteria) => {
+    setSortBy(criteria);
+  };
+
+  const sortedBots = [...bots].sort((a, b) => b[sortBy] - a[sortBy]);
 
   const addBotToArmy = (armyBot) => {
     const botClass = armyBot.bot_class;
@@ -52,13 +60,14 @@ const BotsPage = () => {
 
   return (
     <div>
+      <SortBar handleSort={handleSort} />
       <YourBotArmy
         bots={botArmy}
         dischargeBot={dischargeBot}
         dischargeForever={dischargeForever}
       />
       <BotCollection
-        bots={bots}
+        bots={sortedBots}
         addBot={addBotToArmy}
         dischargeForever={dischargeForever}
       />
