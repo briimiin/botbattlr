@@ -5,16 +5,16 @@
 }
 
 .small-card {
-  width: 150px;
+  width: 131px;
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 10px;
   background-color: white;
   overflow: hidden;
-  height: 250px;
+  height: 210px;
 }
 .small-card img {
-  max-width: 70%; /* Add this line to make the image responsive */
+  max-width: 75%; /* Add this line to make the image responsive */
   height: auto; /* Maintain aspect ratio */
   display: block; /* Ensure the image behaves as a block element */
   margin: 0 auto; /* Center the image horizontally */
@@ -45,11 +45,12 @@
   cursor: pointer;
   border: none;
   background: #e8f1fa;
-  color: #fff;
   padding: 5px 10px;
   border-radius: 3px;
   margin-right: 5px;
   color: black;
+  font-size: 10px;
+
 }
 
 .discharge-button:hover,

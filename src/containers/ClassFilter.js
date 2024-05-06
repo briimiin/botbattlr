@@ -5,11 +5,12 @@ const ClassFilter = ({ classes, handleFilter }) => {
   const [selectedClasses, setSelectedClasses] = useState([]);
 
   const toggleClass = (className) => {
-    const updatedClasses = selectedClasses.includes(className)
-      ? selectedClasses.filter((cls) => cls !== className)
-      : [...selectedClasses, className];
-    setSelectedClasses(updatedClasses);
-    handleFilter(updatedClasses);
+    if (selectedClasses.includes(className)) {
+      setSelectedClasses(selectedClasses.filter((cls) => cls !== className));
+    } else if (selectedClasses.length < 3) {
+      setSelectedClasses([...selectedClasses, className]);
+    }
+    handleFilter(selectedClasses);
   };
 
   return (
@@ -21,11 +22,11 @@ const ClassFilter = ({ classes, handleFilter }) => {
             value={className}
             checked={selectedClasses.includes(className)}
             onChange={() => toggleClass(className)}
+            disabled={selectedClasses.length === 3 && !selectedClasses.includes(className)}
           />
           {className}
         </label>
       ))}
-      {selectedClasses.length < 3 && <p>Please select at least three classes.</p>}
     </div>
   );
 };
