@@ -71,13 +71,13 @@ const BotsPage = () => {
 
   return (
     <div>
-      <SortBar handleSort={handleSort} />
-      <ClassFilter classes={["Assault", "Defender", "Support", "Medic", "Witch", "Captain"]} handleFilter={handleFilter} />
       <YourBotArmy
         bots={botArmy}
         dischargeBot={dischargeBot}
         dischargeForever={dischargeForever}
       />
+      <SortBar handleSort={handleSort} />
+      <ClassFilter classes={["Assault", "Defender", "Support", "Medic", "Witch", "Captain"]} handleFilter={handleFilter} />
       <BotCollection
         bots={filteredBots}
         addBot={addBotToArmy}

@@ -1,25 +1,62 @@
-
-
-
-.ui-segment-inverted-olive-bot-army {
-  background-color: olive;
-
-
+/* BotCard.css */
+.bot-card-container {
+  margin: 10px;
+  display: inline-block;
 }
 
+.small-card {
+  width: 150px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: white;
+  overflow: hidden;
+  height: 250px;
+}
+.small-card img {
+  max-width: 70%; /* Add this line to make the image responsive */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Ensure the image behaves as a block element */
+  margin: 0 auto; /* Center the image horizontally */
+}
 
-.ui.card {
-  background-color: #f4f4f4; /* Grey background color */
-  padding: 20px; /* Adjust as needed for spacing inside the card */
-  border-radius: 5px; 
+.card-content {
+  padding-top: 10px;
+}
+
+.bot-name {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.catchphrase {
+  margin-top: 5px;
+  font-size: 11px;
+}
+
+.stats {
+  margin-top: 5px;
+  font-size: 11px;
+}
+
+.discharge-button,
+.add-to-army-button {
+  margin-top: 10px;
+  cursor: pointer;
+  border: none;
+  background: #e8f1fa;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 3px;
+  margin-right: 5px;
+  color: black;
+}
+
+.discharge-button:hover,
+.add-to-army-button:hover {
+  background: #0056b3;
+}
+.bot-army {
+  background-color: olivedrab;
   margin-bottom: 20px;
-max-width: 250px;
-overflow: hidden;
-    /* Add rounded corners for aesthetics */
-}
-
-.ui-four-column-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* At least 5 bots per row */
-  gap: 10px;
 }
