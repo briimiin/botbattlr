@@ -21,7 +21,8 @@ const BotCard = (props) => {
 
   return (
     <div className="bot-card-grid">
-      <div className="ui card small-card" onClick={handleClick}>
+      <div className="ui card small-card" >
+      
         <div className="image">
           <img alt="bot" src={bot.avatar_url} />
         </div>
@@ -46,6 +47,9 @@ const BotCard = (props) => {
               x
             </button>
           </div>
+        </div>
+        <div> 
+          <button onClick={handleClick}>Add to army</button>
         </div>
       </div>
     </div>
